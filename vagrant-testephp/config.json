@@ -1,0 +1,41 @@
+{
+  "ip": "192.168.33.16",
+  "memory": "2048",
+  "synced_folder": {
+    "host_path": "../",
+    "guest_path": "/var/www"
+  },
+  "php": {
+    "version": false
+  },
+  "mysql": {
+    "server_root_password": "root",
+	"databases": {
+      "name": "symfony"
+    },
+	"bind_address": "0.0.0.0"
+  },  
+  "sites": {
+   
+  },
+  "git": {
+    "user": {
+      "name": "Test",
+      "email": "test@example.com"
+    },
+    "core": {
+      "editor": "vi"
+    },
+    "color": {
+      "ui": true
+    }
+  },
+  "custom_roles": [
+    "itelios"
+  ],
+  "apache":{
+    "site":"symblog.dev",
+    "default_modules":[
+    ]	
+  }
+}

@@ -1,0 +1,58 @@
+Olá,
+
+Este é o teste de PHP para recrutamento na Itelios do Brasil.
+
+O teste foi escrito usando-se o framework Symfony. Mas não é preciso conhecer o framework para completá-lo (Vide última seção 4 - Entendendo o projeto). Porém, é preciso conhecer os conceitos de MVC para fazer parte do time da Itelios.
+
+Para poder realizar o teste, será necessário fazer o setup do seu ambiente: Apache e MySQL.
+
+1. Setup do Apache:
+	Existem 3 opções, escolha 1 entre elas:
+
+	a)  Coloque os arquivos do pacote na pasta www ou htdocs ou public_html (dependendo de qual versão do apache e qual sistema operacional você possui) e altere o arquivo de configuração do apache (apache2.conf ou httpd.conf, para que o DocumentRoot seja a pasta web, dentro da pasta www ou htdocs)
+
+	b) Outra opção é, caso você saiba criar um Virtual Host, criar o virtual host e apontar para a pasta web dentro do pacote.
+
+	c) Por fim, o pacote também inclui uma pasta vagrat-testphp. Caso você use vagrant, pode simplesmente rodar vagrant up nessa pasta que ele irá montar o ambiente. Essa opção, por enquanto, funciona apenas no windows
+
+2. Setup do Banco:
+	Na raiz do projeto existe um arquivo db.sql.
+	Crie um banco de dados chamado symfony e importe o conteúdo desse arquivo .sql para ele.
+	Exemplo: mysql -uroot -proot symfony < db.sql (esse exemplo considera usuario e senha como root)
+	O arquivo /app/config/parameters.yml deve ser ajustado com as credenciais do banco.
+
+
+3. Teste
+
+Se tudo foi configurado corretamente, ao acessar a home (localhost ou qualquer outro domínio que você tenha definido no seu virtual host) deverá aparecer o nosso aplicativo que implementa um sistema simples de Blog.
+No banco de dados importado, existem 5 posts, que deverão ser listados na página inicial.
+
+Agora clique na contagem de comentários que aparece abaixo do primeiro post. Atualmente, esse link redireciona para a interna do post, com a listagem dos comentários abaixo. 
+
+Pede-se: Ao clicar na quantidade de comentários da página inicial, ao invés de abrir a página do detalhe do post, carregue via ajax os comentários na própria página inicial, abaixo do post clicado.
+Deve-se obrigatoriamente criar uma action nova, mesmo que seja copiado o código de outra action.
+
+4.  Entendendo o projeto - Para quem não está acostumado com Symfony
+
+O Symfony funciona com o conceito de Bundle: seria um pacote contendo uma funcionalidade. Nosso aplicativo de Blog está todo contido em um único Bundle: BlogBundle. Esse bundle pode ser encontrado em /src/Blogger/BlogBundle. É dentro desses arquivos que você deve trabalhar.
+Dentro dessa pasta, encontra-se:
+
+Controller - pasta onde estão os controllers da nossa aplicação. No arquivo Resources/config/routing.yml encontra-se o mapeamento de urls para actions dos controllers. Ou seja, na linha 7 desse arquivo, por exemplo, configuramos a url "/about" para executar a action "about" do controller "Page".
+
+DataFixtures - pasta onde foi gerado programaticamente conteúdo de teste. Pode ser ignorada para esse teste atual porque o banco de dados já foi enviado de forma completa.
+
+DependencyInjection - pasta com algumas configurações, pode ser ignorada para o teste
+
+Entity - pasta onde se encontra o Model do MVC, ou seja, entidades que serão persistidas em banco de dados. A entidade Blog, neste exemplo, representa cada post do Blog.
+
+Form - pasta onde se encontra a definição, via classes, dos formulários usados pelo nosso bundle. Pode ser ignorada para o teste.
+
+Repository - pasta onde se encontra os repositórios, uma design pattern que representa o acesso dos controllers às entidades cadastradas no sistema, neste caso, é a camada de acesso ao banco de dados. Pode ser ignorada para o teste.
+
+Resources - pasta de arquivos de configuração e dos arquivos de visualização. Dentro da subpasta views temos os templates em linguagem twig e temos a pasta css.
+
+Tests - pasta para incluir testes automatizados
+
+Twig - pasta para incluir extensões ao Twig, linguagem de templating utilizada pelo symfony.
+  
+De forma geral, pede-se adicionar uma action em algum dos controllers e manipular as views contidas em Resouces/views para implementar o ajax pedido no item 3.	
